@@ -540,7 +540,11 @@
           </div>
 
           <div class="mb-3">
-            <button type="button" onClick="myFunction()" class="btn btn-primary w-100">Kirim</button>
+            <button type="button" id="btnKirim" onClick="simpanForm()" class="btn btn-primary w-100">Kirim</button>
+
+            <button type="button" id="btnLoading" class="btn btn-primary w-100 mt-2" disabled>
+              <div class="spinner-border spinner-border-sm" role="status"></div>
+            </button>
           </div>
         </form>
       </div>
@@ -562,6 +566,29 @@
 
     function myFunction(){
       myAlert.style.display = 'block';
+    }
+
+    var btnKirim = document.getElementById('btnKirim');
+    var btnLoading = document.getElementById('btnLoading');
+
+    btnLoading.style.display = 'none';
+
+    function startProses(){
+      btnKirim.style.display = 'none';
+      btnLoading.style.display = 'block';
+    }
+
+    function endProses(){
+      btnLoading.style.display = 'none';
+      btnKirim.style.display = 'block';
+    }
+
+    function simpanForm(){
+      startProses(); 
+
+      setTimeout(function(){
+          endProses(); myFunction();
+        }, 3000)
     }
   </script>
 </body>
